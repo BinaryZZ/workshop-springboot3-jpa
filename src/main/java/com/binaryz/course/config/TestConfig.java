@@ -12,10 +12,10 @@ import java.util.Arrays;
 
 @Configuration
 @Profile("test")
-public class TestConfig implements CommandLineRunner {
+public class TestConfig implements CommandLineRunner { //implementation to use CommandLineRunner methods
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository userRepository; // dependency injection
 
 
     @Override
