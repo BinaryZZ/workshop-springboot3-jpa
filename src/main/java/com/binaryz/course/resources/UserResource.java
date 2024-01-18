@@ -1,6 +1,7 @@
 package com.binaryz.course.resources;
 
 import com.binaryz.course.entities.User;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,10 +30,16 @@ public class UserResource {
     }
 
     @PostMapping
-    public ResponseEntity<User> inset(@RequestBody User obj){
+    public ResponseEntity<User> insert(@RequestBody User obj){
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete (@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 
